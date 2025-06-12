@@ -1,0 +1,352 @@
+:root {
+    --black: #0d0d0d;
+    --gold: #d4af37;
+    --gold-light: #e6c34d;
+    --gold-dark: #b8972e;
+    --red: #ff5c5c;
+    --white: #f5f5f5;
+    --gray: #1a1a1a;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: radial-gradient(ellipse at center, #141414 0%, var(--black) 100%);
+    color: var(--white);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    padding: 30px 20px;
+    background: linear-gradient(to bottom, #111, #0a0a0a);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 2px solid var(--gold);
+}
+
+h1 {
+    margin: 0;
+    font-size: 2.8rem;
+    letter-spacing: 3px;
+    position: relative;
+    animation: fadeInDown 1s ease-out;
+    text-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+}
+
+/* Кастомная линия под заголовком */
+h1::after {
+    content: '';
+    display: block;
+    width: 150px;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 15px auto;
+    border-radius: 50%;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 15px;
+    background: linear-gradient(to right, #0f0f0f, #080808);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.7);
+    flex-wrap: wrap;
+    border-top: 1px solid rgba(212, 175, 55, 0.1);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+}
+
+nav button {
+    background: none;
+    border: none;
+    color: var(--white);
+    font-size: 1.1rem;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 10px 20px;
+    border-radius: 30px;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+nav button:hover {
+    color: var(--gold);
+    transform: translateY(-3px);
+    text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+}
+
+nav button::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--gold);
+    transition: all 0.4s ease;
+    transform: translateX(-50%);
+}
+
+nav button:hover::after {
+    width: 80%;
+}
+
+.section {
+    display: none;
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    animation: fadeIn 0.5s ease-out;
+    text-align: center;
+}
+
+.active {
+    display: block;
+}
+
+.product {
+    display: inline-block;
+    padding: 25px;
+    margin: 20px;
+    background: linear-gradient(145deg, #161616, #1e1e1e);
+    border-radius: 12px;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    vertical-align: top;
+    width: 270px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+    border: 1px solid rgba(212, 175, 55, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.product:hover {
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.7), 0 0 25px rgba(212, 175, 55, 0.2);
+    border-color: rgba(212, 175, 55, 0.3);
+}
+
+.product:hover img {
+    transform: scale(1.08);
+}
+
+.product img {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    border-radius: 8px;
+    transition: transform 0.5s ease;
+    display: block;
+    margin: 0 auto 20px;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.product .details-btn {
+    background: transparent;
+    color: var(--gold);
+    border: 2px solid var(--gold);
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    transition: all 0.4s ease;
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.product .details-btn:hover {
+    background: var(--gold);
+    color: var(--black);
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+}
+select.size-select {
+    width: 100%;
+    margin-top: 10px;
+    padding: 8px;
+    font-weight: bold;
+    border-radius: 6px;
+    border: 1px solid var(--gold);
+    background: rgba(0,0,0,0.4);
+    color: var(--gold-light);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+select.size-select:focus {
+    box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.3);
+}
+
+button {
+    background: linear-gradient(to right, var(--gold), var(--gold-dark));
+    color: var(--black);
+    padding: 12px 25px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    margin-top: 15px;
+    display: inline-block;
+    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+button:hover {
+    background: linear-gradient(to right, var(--gold-light), var(--gold));
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 8px 20px rgba(212, 175, 55, 0.5);
+}
+
+iframe {
+    width: 90%;
+    max-width: 800px;
+    height: 450px;
+    border: none;
+    margin: 40px auto;
+    display: block;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+footer {
+    padding: 25px;
+    background: linear-gradient(to top, #0a0a0a, #000);
+    text-align: center;
+    margin-top: auto;
+    border-top: 1px solid var(--gold);
+}
+
+.tagline {
+    font-size: 1.4rem;
+    font-weight: 500;
+    margin: 25px auto;
+    color: var(--gold-light);
+    animation: fadeIn 1s ease-out 0.3s both;
+    max-width: 800px;
+    text-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+.video-caption {
+    font-style: italic;
+    margin: 30px auto 20px;
+    font-size: 1.2rem;
+    animation: fadeIn 1s ease-out 0.6s both;
+    max-width: 800px;
+}
+
+.brand-slogan {
+    font-weight: 700;
+    margin: 30px auto 15px;
+    font-size: 1.3rem;
+    color: var(--gold);
+    animation: fadeIn 1s ease-out 0.9s both;
+    max-width: 800px;
+}
+
+/* Анимации */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-25px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.cart-item-added {
+    animation: pulse 0.6s ease;
+}
+
+#cart-content {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: left;
+    background: rgba(30, 30, 30, 0.7);
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+#checkout-btn {
+    display: none;
+    margin: 25px auto;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    nav {
+        gap: 10px;
+        padding: 12px;
+    }
+    
+    nav button {
+        padding: 8px 15px;
+        font-size: 1rem;
+    }
+
+    .product {
+        width: 85%;
+        margin: 15px auto;
+        display: block;
+    }
+
+    iframe {
+        height: 300px;
+    }
+
+    h1 {
+        font-size: 2.2rem;
+    }
+    
+    .tagline {
+        font-size: 1.2rem;
+    }
+}
+
+/* Эффект золотого свечения */
+.gold-glow {
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+}
+
+/* Кастомная линия для секций */
+.section-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    width: 80%;
+    margin: 30px auto;
+    border-radius: 50%;
+}

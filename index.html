@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SOAP CARTEL</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <h1>SOAP CARTEL</h1>
+    </header>
+
+    <nav>
+        <button onclick="showSection('home')">Главная</button>
+        <button onclick="showSection('catalog')">Каталог</button>
+        <button onclick="showSection('about')">О нас</button>
+        <button onclick="showSection('cart')">Корзина</button>
+        <button onclick="showSection('login')">Вход / Регистрация</button>
+        <button onclick="showSection('faq')">FAQ</button>
+    </nav>
+
+    <section id="home" class="section active">
+        <h2>Добро пожаловать в SOAP CARTEL</h2>
+        <p class="video-caption">🎥 Смотри наш видеоролик ниже и почувствуй атмосферу.</p>
+        <p class="brand-slogan">SOAP CARTEL — будь собой. Громко.</p>
+        <iframe src="https://www.youtube.com/embed/Wm7xJDsE__4" allowfullscreen title="SOAP CARTEL видео"></iframe>
+    </section>
+
+    <section id="about" class="section">
+        <h2>О нас</h2>
+        <p class="tagline">Одежда с характером. Стиль с улиц.</p>
+        <p>
+            SOAP CARTEL — больше, чем бренд.
+            Это голос поколения, которое говорит через стиль. Мы вдохновляемся уличной культурой, искусством, музыкой и ритмом мегаполиса.
+            Каждый дроп — это манифест. Каждый силуэт — отражение характера.
+        </p>
+        <h3>Мы создаём одежду для тех, кто идёт своим путём.</h3>
+        <p>Для тех, кто видит красоту в бетоне, чувствует свободу в движении и не боится выделяться. Это не просто вещи — это броня города</p>
+
+        <p class="founder-message">
+            Soap Cartel — это я и мой друг из Алматы.<br>
+            Мы основали бренд, чтобы внести свой вклад в культуру скейтбординга.<br>
+            Для нас это не просто стиль — это способ жить. Мы сами катаемся, сами снимаем, сами делаем дизайн.<br>
+            Всё — от сердца, своими руками, без фальши.<br><br>
+            Почему “Soap”?<br>
+            В скейте важна гладкость и скольжение. Обычно используют вакс, но мы выбрали мыло — как символ чистого стиля и свободного движения.
+            Soap Cartel — это не адаптация культуры. Мы в ней выросли. Мы её двигаем.
+        </p>
+    </section>
+
+    <section id="catalog" class="section">
+        <h2>Каталог</h2>
+
+        <div class="product">
+            <img src="{{ url_for('static', filename='pant.png') }}" alt="Soap Pant"
+                 onclick="showProductDetail('Soap Pant', 'pant.png', 200, 'Стильные брюки из коллекции SOAP CARTEL.')" />
+            <p>Soap Pant — $200</p>
+            <label for="size-pant">Выберите размер:</label><br />
+            <select id="size-pant" class="size-select" aria-label="Выберите размер для Soap Pant">
+                <option value="S">S</option>
+                <option value="M" selected>M</option>
+                <option value="L">L</option>
+                <option value="XL">XL</option>
+            </select>
+            <button onclick="addToCartWithSize('Soap Pant', 200, document.getElementById('size-pant').value, this)">В корзину</button>
+            <button class="details-btn" onclick="showProductDetail('Soap Pant', 'pant.png', 200, 'Стильные брюки из коллекции SOAP CARTEL.')">Подробнее</button>
+        </div>
+
+        <div class="product">
+            <img src="{{ url_for('static', filename='tee.png') }}" alt="Soap Tee" onclick="showProductDetail('Soap Tee', 'tee.png', 50, 'Удобная футболка из коллекции SOAP CARTEL.')" />
+            <p>Soap Tee — $50</p>
+            <label for="size-tee">Выберите размер:</label><br />
+            <select id="size-tee" class="size-select" aria-label="Выберите размер для Soap Tee">
+                <option value="S">S</option>
+                <option value="M" selected>M</option>
+                <option value="L">L</option>
+                <option value="XL">XL</option>
+            </select>
+            <button onclick="addToCartWithSize('Soap Tee', 50, document.getElementById('size-tee').value, this)">В корзину</button>
+            <button class="details-btn" onclick="showProductDetail('Soap Tee', 'tee.png', 50, 'Удобная футболка из коллекции SOAP CARTEL.')">Подробнее</button>
+        </div>
+
+        <div class="product">
+            <img src="{{ url_for('static', filename='hoodie.png') }}" alt="Soap Hoodie" onclick="showProductDetail('Soap Hoodie', 'hoodie.png', 150, 'Теплый худи из коллекции SOAP CARTEL.')" />
+            <p>Soap Hoodie — $150</p>
+            <label for="size-hoodie">Выберите размер:</label><br />
+            <select id="size-hoodie" class="size-select" aria-label="Выберите размер для Soap Hoodie">
+                <option value="S">S</option>
+                <option value="M" selected>M</option>
+                <option value="L">L</option>
+                <option value="XL">XL</option>
+            </select>
+            <button onclick="addToCartWithSize('Soap Hoodie', 150, document.getElementById('size-hoodie').value, this)">В корзину</button>
+            <button class="details-btn" onclick="showProductDetail('Soap Hoodie', 'hoodie.png', 150, 'Теплый худи из коллекции SOAP CARTEL.')">Подробнее</button>
+        </div>
+    </section>
+
+    <section id="cart" class="section">
+        <h2>Корзина</h2>
+        <div id="cart-content">
+            <p>Корзина пуста.</p>
+        </div>
+        <p><strong>Итого: $<span id="cart-total">0</span></strong></p>
+        <button id="checkout-btn">Оформить заказ</button>
+    </section>
+
+    <section id="login" class="section">
+        <h2>Вход</h2>
+        <form id="login-form">
+            <div>
+                <label for="username">Имя пользователя:</label>
+                <input type="text" id="username" required>
+            </div>
+            <div>
+                <label for="password">Пароль:</label>
+                <input type="password" id="password" required>
+            </div>
+            <div>
+                <button type="submit">Войти</button>
+            </div>
+            <div>
+                <p>Нет аккаунта? <a href="#" onclick="showSection('register')">Зарегистрироваться</a></p>
+            </div>
+        </form>
+    </section>
+
+    <section id="register" class="section" style="display:none;">
+        <h2>Регистрация</h2>
+        <form id="register-form">
+            <div>
+                <label for="new-username">Имя пользователя:</label>
+                <input type="text" id="new-username" name="username" autocomplete="username" required>
+            </div>
+            <div>
+                <label for="new-password">Пароль:</label>
+                <input type="password" id="new-password" name="password" autocomplete="new-password" required>
+            </div>
+            <div>
+                <label for="new-email">Электронная почта:</label>
+                <input type="email" id="new-email" name="email" autocomplete="email" required>
+            </div>
+            <div>
+                <button type="submit">Зарегистрироваться</button>
+            </div>
+            <div>
+                <p>Уже есть аккаунт? <a href="#" onclick="showSection('login')">Войти</a></p>
+            </div>
+        </form>
+    </section>
+
+    <section id="product-detail" class="section" style="display:none;">
+        <h2 id="product-title">Название товара</h2>
+        <img id="product-image" src="" alt="Изображение товара" style="max-width:300px;">
+        <p id="product-description">Описание товара.</p>
+        <p>Цена: $<span id="product-price-value">0</span></p>
+        <button onclick="addToCartFromDetail()">В корзину</button>
+        <button onclick="showSection('catalog')">Назад в каталог</button>
+    </section>
+
+    <section id="faq" class="section">
+        <h2>FAQ</h2>
+        <p>Все покупки являются окончательными.</p>
+        <p>Возврат возможен только в случае, если товар оказался дефектным или не был доставлен.</p>
+        <p>Если возникли вопросы:</p>
+        <ul style="list-style-type:none; padding-left:0;">
+            <li>— Напишите в Instagram: <a href="https://instagram.com/soapcart3l" target="_blank" style="color: var(--gold); text-decoration: underline;">@soapcart3l</a></li>
+            <li>— Или заполните форму обратной связи :D</li>
+            <li>— Или напишите нам на почту: <a href="mailto:soapcartel@gmail.com" style="color: var(--gold); text-decoration: underline;">soapcartel@gmail.com</a></li>
+        </ul>
+    </section>
+
+    <footer>
+        <p>© 2025 SOAP CARTEL | Все права защищены</p>
+    </footer>
+    <script src="script.js"></script>
+    <!-- Добавьте этот код перед закрывающим тегом </body> -->
+    <div id="chat-container">
+        <div id="chat-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#d4af37" width="28" height="28">
+                <path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-3 12H7v-2h10v2zm0-3H7V9h10v2zm0-3H7V6h10v2z" />
+            </svg>
+        </div>
+
+        <div id="chat-widget" class="hidden">
+            <div id="chat-header">
+                <div>
+                    <h3>Помощник</h3>
+                    <span id="chat-status">online</span>
+                </div>
+                <button id="close-chat">×</button>
+            </div>
+            <div id="chat-messages"></div>
+            <div id="chat-input">
+                <input type="text" id="user-input" placeholder="Напишите вопрос...">
+                <button id="send-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#0d0d0d" width="20" height="20">
+                        <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Получаем элементы
+            const chatIcon = document.getElementById('chat-icon');
+            const chatWidget = document.getElementById('chat-widget');
+            const chatMessages = document.getElementById('chat-messages');
+            const userInput = document.getElementById('user-input');
+            const sendBtn = document.getElementById('send-btn');
+            const closeBtn = document.getElementById('close-chat');
+
+            // Открытие/закрытие чата
+            chatIcon.addEventListener('click', function () {
+                chatWidget.classList.toggle('hidden');
+                userInput.focus();
+            });
+
+            closeBtn.addEventListener('click', function () {
+                chatWidget.classList.add('hidden');
+            });
+
+            // Инициализация чата
+            function initChat() {
+                addBotMessage("Привет! Я ваш помощник. Чем могу помочь?");
+            }
+
+            // Добавление сообщения от бота
+            function addBotMessage(text) {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = 'message bot-message';
+
+                const contentDiv = document.createElement('div');
+                contentDiv.className = 'msg-content';
+                contentDiv.textContent = text;
+
+                const timeDiv = document.createElement('div');
+                timeDiv.className = 'msg-time';
+                timeDiv.textContent = getCurrentTime();
+
+                messageDiv.appendChild(contentDiv);
+                messageDiv.appendChild(timeDiv);
+                chatMessages.appendChild(messageDiv);
+
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+
+            // Добавление сообщения от пользователя
+            function addUserMessage(text) {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = 'message user-message';
+
+                const contentDiv = document.createElement('div');
+                contentDiv.className = 'msg-content';
+                contentDiv.textContent = text;
+
+                const timeDiv = document.createElement('div');
+                timeDiv.className = 'msg-time';
+                timeDiv.textContent = getCurrentTime();
+
+                messageDiv.appendChild(contentDiv);
+                messageDiv.appendChild(timeDiv);
+                chatMessages.appendChild(messageDiv);
+
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+
+            // Получение текущего времени
+            function getCurrentTime() {
+                const now = new Date();
+                const hours = now.getHours().toString().padStart(2, '0');
+                const minutes = now.getMinutes().toString().padStart(2, '0');
+                return `${hours}:${minutes} `;
+            }
+
+            // Ответы бота
+            function botResponse(userMessage) {
+                userMessage = userMessage.toLowerCase();
+                let response;
+
+                if (userMessage.includes('привет') || userMessage.includes('здравствуйте')) {
+                    response = "Здравствуйте! Чем могу помочь?";
+                } else if (userMessage.includes('доставк') || userMessage.includes('получить')) {
+                    response = "Доставка занимает 2-5 дней по всей стране.";
+                } else if (userMessage.includes('оплата') || userMessage.includes('купить')) {
+                    response = "Мы принимаем карты Visa/Mastercard и наличные при получении.";
+                } else if (userMessage.includes('размер') || userMessage.includes('мерч')) {
+                    response = "На странице каждого товара есть размерная сетка.";
+                } else if (userMessage.includes('контакт') || userMessage.includes('связаться')) {
+                    response = "Наши контакты: +7 (999) 123-45-67";
+                } else {
+                    response = "Я передал информацию менеджеру — он свяжется с вами в ближайшее время.";
+                }
+
+                // Имитация задержки ответа
+                setTimeout(() => {
+                    addBotMessage(response);
+                }, 1000);
+            }
+
+            // Обработка отправки сообщения
+            function sendMessage() {
+                const message = userInput.value.trim();
+                if (message) {
+                    addUserMessage(message);
+                    userInput.value = '';
+                    botResponse(message);
+                }
+            }
+
+            // Обработчики событий
+            sendBtn.addEventListener('click', sendMessage);
+            userInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    sendMessage();
+                }
+            });
+
+            // Запуск чата
+            initChat();
+        });
+    </script>
+
+    <style>
+        /* Стили для чат-бота */
+        #chat-container {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            z-index: 10000;
+        }
+
+        #chat-icon {
+            width: 60px;
+            height: 60px;
+            background: #d4af37;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+            transition: all 0.3s ease;
+        }
+
+            #chat-icon:hover {
+                transform: scale(1.1);
+                background: #e6c34d;
+                box-shadow: 0 0 20px rgba(212, 175, 55, 0.7);
+            }
+
+        #chat-widget {
+            width: 320px;
+            height: 400px;
+            background: #1a1a1a;
+            border: 1px solid #d4af37;
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.7);
+            overflow: hidden;
+        }
+
+            #chat-widget.hidden {
+                display: none;
+            }
+
+        #chat-header {
+            background: #0f0f0f;
+            padding: 15px;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+            #chat-header h3 {
+                margin: 0;
+                color: #d4af37;
+                font-size: 1.2rem;
+            }
+
+        #chat-status {
+            font-size: 0.8rem;
+            color: #4caf50;
+            display: flex;
+            align-items: center;
+        }
+
+            #chat-status::before {
+                content: '';
+                display: inline-block;
+                width: 8px;
+                height: 8px;
+                background: #4caf50;
+                border-radius: 50%;
+                margin-right: 5px;
+            }
+
+        #close-chat {
+            background: none;
+            border: none;
+            color: #f5f5f5;
+            font-size: 1.5rem;
+            cursor: pointer;
+            line-height: 1;
+        }
+
+        #chat-messages {
+            flex-grow: 1;
+            padding: 15px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            background: #0d0d0d;
+        }
+
+        .message {
+            max-width: 80%;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .msg-content {
+            padding: 10px 15px;
+            border-radius: 18px;
+            word-wrap: break-word;
+        }
+
+        .user-message {
+            align-self: flex-end;
+        }
+
+            .user-message .msg-content {
+                background: linear-gradient(to right, #d4af37, #b8972e);
+                color: #0d0d0d;
+                border-bottom-right-radius: 5px;
+            }
+
+        .bot-message {
+            align-self: flex-start;
+        }
+
+            .bot-message .msg-content {
+                background: #2a2a2a;
+                color: #f5f5f5;
+                border-bottom-left-radius: 5px;
+                border: 1px solid rgba(212, 175, 55, 0.3);
+            }
+
+        .msg-time {
+            font-size: 0.7rem;
+            opacity: 0.7;
+            margin-top: 5px;
+            text-align: right;
+        }
+
+        #chat-input {
+            display: flex;
+            padding: 15px;
+            background: #1a1a1a;
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+            gap: 10px;
+        }
+
+        #user-input {
+            flex-grow: 1;
+            padding: 10px 15px;
+            border-radius: 30px;
+            border: 1px solid #d4af37;
+            background: rgba(0,0,0,0.5);
+            color: #f5f5f5;
+            outline: none;
+        }
+
+        #send-btn {
+            background: #d4af37;
+            color: #0d0d0d;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Анимации */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Прокрутка */
+        #chat-messages::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        #chat-messages::-webkit-scrollbar-track {
+            background: #0d0d0d;
+        }
+
+        #chat-messages::-webkit-scrollbar-thumb {
+            background: #d4af37;
+            border-radius: 3px;
+        }
+    </style>
+</body>
+</html>
