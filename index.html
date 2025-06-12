@@ -55,7 +55,7 @@
 
         <div class="product">
               <img src="static/pant.png" alt="Soap Pant"
-                 onclick="showProductDetail('Soap Pant', 'pant.png', 200, 'Стильные брюки из коллекции SOAP CARTEL.')" />
+                 onclick="showProductDetail('Soap Pant', 'static/pant.png', 200, 'Стильные брюки из коллекции SOAP CARTEL.')" />
             <p>Soap Pant — $200</p>
             <label for="size-pant">Выберите размер:</label><br />
             <select id="size-pant" class="size-select" aria-label="Выберите размер для Soap Pant">
@@ -69,7 +69,7 @@
         </div>
 
         <div class="product">
-            <img src="static/tee.png" alt="Soap Tee" onclick="showProductDetail('Soap Tee', 'tee.png', 50, 'Удобная футболка из коллекции SOAP CARTEL.')" />
+            <img src="static/tee.png" alt="Soap Tee" onclick="showProductDetail('Soap Tee', 'static/tee.png', 50, 'Удобная футболка из коллекции SOAP CARTEL.')" />
             <p>Soap Tee — $50</p>
             <label for="size-tee">Выберите размер:</label><br />
             <select id="size-tee" class="size-select" aria-label="Выберите размер для Soap Tee">
@@ -79,11 +79,11 @@
                 <option value="XL">XL</option>
             </select>
             <button onclick="addToCartWithSize('Soap Tee', 50, document.getElementById('size-tee').value, this)">В корзину</button>
-            <button class="details-btn" onclick="showProductDetail('Soap Tee', "static/tee.png", 50, 'Удобная футболка из коллекции SOAP CARTEL.')">Подробнее</button>
+            <button class="details-btn" onclick="showProductDetail('Soap Tee', 'static/tee.png', 50, 'Удобная футболка из коллекции SOAP CARTEL.')">Подробнее</button>
         </div>
 
         <div class="product">
-            <img src="static/hoodie.png" alt="Soap Hoodie" onclick="showProductDetail('Soap Hoodie', 'hoodie.png', 150, 'Теплый худи из коллекции SOAP CARTEL.')" />
+            <img src="static/hoodie.png" alt="Soap Hoodie" onclick="showProductDetail('Soap Hoodie', 'static/hoodie.png', 150, 'Теплый худи из коллекции SOAP CARTEL.')" />
             <p>Soap Hoodie — $150</p>
             <label for="size-hoodie">Выберите размер:</label><br />
             <select id="size-hoodie" class="size-select" aria-label="Выберите размер для Soap Hoodie">
@@ -93,7 +93,7 @@
                 <option value="XL">XL</option>
             </select>
             <button onclick="addToCartWithSize('Soap Hoodie', 150, document.getElementById('size-hoodie').value, this)">В корзину</button>
-            <button class="details-btn" onclick="showProductDetail('Soap Hoodie', "static/hoodie.png", 150, 'Теплый худи из коллекции SOAP CARTEL.')">Подробнее</button>
+            <button class="details-btn" onclick="showProductDetail('Soap Hoodie', 'static/hoodie.png', 150, 'Теплый худи из коллекции SOAP CARTEL.')">Подробнее</button>
         </div>
     </section>
 
@@ -283,16 +283,16 @@
 
                 if (userMessage.includes('привет') || userMessage.includes('здравствуйте')) {
                     response = "Здравствуйте! Чем могу помочь?";
-                } else if (userMessage.includes('доставк') || userMessage.includes('получить')) {
+                } else if (userMessage.includes('доставка') || userMessage.includes('получить')) {
                     response = "Доставка занимает 2-5 дней по всей стране.";
                 } else if (userMessage.includes('оплата') || userMessage.includes('купить')) {
                     response = "Мы принимаем карты Visa/Mastercard и наличные при получении.";
                 } else if (userMessage.includes('размер') || userMessage.includes('мерч')) {
                     response = "На странице каждого товара есть размерная сетка.";
-                } else if (userMessage.includes('контакт') || userMessage.includes('связаться')) {
+                } else if (userMessage.includes('контакты') || userMessage.includes('связаться')) {
                     response = "Наши контакты: +7 (999) 123-45-67";
                 } else {
-                    response = "Я передал информацию менеджеру — он свяжется с вами в ближайшее время.";
+                    response = "Я передал информацию менеджеру — он свяжется с вами в ближайшее время. Хорошего дня!";
                 }
 
                 // Имитация задержки ответа
